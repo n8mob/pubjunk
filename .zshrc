@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/nagrigg/.oh-my-zsh
-export EDITOR=emacs
+export EDITOR='emacs -nw'
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
