@@ -55,6 +55,10 @@
 
 (setq web-mode-enable-auto-quoting t)
 
+;; Org stuff
+(setq org-todo-keywords
+      '((sequence "TODO" "Q" "|" "DONE" "A")))
+
 ;; Markdown stuff
 (add-hook 'markdown-mode-hook 'visual-line-mode)
 (setq markdown-asymmetric-header t)
