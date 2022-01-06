@@ -27,9 +27,6 @@
 
 (add-hook 'find-file-hook 'treys-find-file-check-make-large-file-read-only-hook)
 
-;; syntax highlighting on HTML export from org-mode
-(setq org-src-fontify-natively t)
-
 ;; easy spell check
 (setq ispell-program-name "/usr/local/bin/aspell")
 (setq ispell-list-command "--list"); emacswicki.org/emacs/FlySpell said I need this for ASpell
@@ -56,8 +53,11 @@
 (setq web-mode-enable-auto-quoting t)
 
 ;; Org stuff
-(setq org-todo-keywords
-      '((sequence "TODO" "Q" "|" "DONE" "A")))
+;; syntax highlighting on HTML export from org-mode
+(setq org-src-fontify-natively t)
+(setq org-adapt-indentation nil)
+(setq org-link-file-path-type relative)
+
 
 ;; Markdown stuff
 (add-hook 'markdown-mode-hook 'visual-line-mode)
