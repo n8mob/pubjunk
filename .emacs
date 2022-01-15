@@ -56,7 +56,7 @@
 ;; syntax highlighting on HTML export from org-mode
 (setq org-src-fontify-natively t)
 (setq org-adapt-indentation nil)
-(setq org-link-file-path-type relative)
+(setq org-link-file-path-type `relative)
 
 
 ;; Markdown stuff
