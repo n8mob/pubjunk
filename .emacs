@@ -2,8 +2,6 @@
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("org" . "http://orgmode.org/elpa/") t)
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -28,7 +26,7 @@
 (add-hook 'find-file-hook 'treys-find-file-check-make-large-file-read-only-hook)
 
 ;; easy spell check
-(setq ispell-program-name "/usr/local/bin/aspell")
+(setq ispell-program-name "/opt/homebrew/bin/aspell")
 (setq ispell-list-command "--list"); emacswicki.org/emacs/FlySpell said I need this for ASpell
 (global-set-key (kbd "<f8>") 'ispell-word)
 (global-set-key (kbd "C-S-<f8>") 'flyspell-mode)
@@ -43,6 +41,8 @@
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.zsh-theme?\\'" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
 
 (global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
 
@@ -56,8 +56,10 @@
 ;; syntax highlighting on HTML export from org-mode
 (setq org-src-fontify-natively t)
 (setq org-adapt-indentation nil)
-(setq org-link-file-path-type `relative)
-
+(setq org-directory "~/Documents/n/")
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
 
 ;; Markdown stuff
 (add-hook 'markdown-mode-hook 'visual-line-mode)
@@ -74,9 +76,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (misterioso)))
- '(org-export-backends (quote (ascii html md odt org confluence)))
+ '(custom-enabled-themes '(misterioso))
+ '(org-agenda-files
+   '("~/Documents/n/2022/12_11.org" "~/Documents/n/projects/" "~/Documents/n/areas/" "~/Documents/n/resources/" "~/Documents/n/2022/" "~/Documents/n/2021/"))
+ '(org-export-backends '(ascii html md odt org confluence))
  '(org-export-with-toc nil)
- '(package-selected-packages (quote (php-mode web-mode markdown-mode htmlize elpy))))
+ '(org-link-frame-setup
+   '((vm . vm-visit-folder-other-frame)
+     (vm-imap . vm-visit-imap-folder-other-frame)
+     (gnus . org-gnus-no-new-news)
+     (file . find-file)
+     (wl . wl-other-frame)))
+ '(package-selected-packages '(php-mode web-mode markdown-mode htmlize elpy)))
       
 (tool-bar-mode -1)
