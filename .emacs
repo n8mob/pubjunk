@@ -8,11 +8,16 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
+(setq read-buffer-completion-ignore-case t)
+
 (require 're-builder)
 (setq reb-re-syntax 'string)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq-default indent-tabs-mode nil)
+
+(setq help-window-select t)
 
 (defun treys-find-file-check-make-large-file-read-only-hook ()
   "If a file is over a given size, make the buffer read only."
@@ -26,7 +31,7 @@
 (add-hook 'find-file-hook 'treys-find-file-check-make-large-file-read-only-hook)
 
 ;; easy spell check
-(setq ispell-program-name "/opt/homebrew/bin/aspell")
+(setq ispell-program-name "/usr/local/bin/aspell")
 (setq ispell-list-command "--list"); emacswicki.org/emacs/FlySpell said I need this for ASpell
 (global-set-key (kbd "<f8>") 'ispell-word)
 (global-set-key (kbd "C-S-<f8>") 'flyspell-mode)
@@ -56,6 +61,7 @@
 ;; syntax highlighting on HTML export from org-mode
 (setq org-src-fontify-natively t)
 (setq org-adapt-indentation nil)
+(setq org-list-allow-alphabetical t)
 (setq org-directory "~/Documents/n/")
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
