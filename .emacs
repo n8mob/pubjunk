@@ -1,11 +1,7 @@
 ;; from http://melpa.org/#/getting-started
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "http://stable.melpa.org/packages/") t)
-
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+             `("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups/")))
