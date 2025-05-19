@@ -8,7 +8,7 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
-(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
+(setq backup-directory-alist `(("." . "~/.emacs.d/backups/")))
 (setq read-buffer-completion-ignore-case t)
 
 (require 're-builder)
@@ -24,8 +24,7 @@
   (when (> (buffer-size) (* 10 1024 1024))
     (setq buffer-read-only t)
     (buffer-disable-undo)
-    (fundamental-mode)
-    ; (message "Buffer is set to read-only because it is large.  Undo also disabled.")
+    (fundamental-mode) ; (message "Buffer is set to read-only because it is large.  Undo also disabled.")
     ))
 
 (add-hook 'find-file-hook 'treys-find-file-check-make-large-file-read-only-hook)
@@ -53,7 +52,6 @@
 
 (add-hook 'text-mode-hook 'flyspell-mode 'visual-line-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode 'visual-line-mode)
-(add-hook 'org-mode-hook 'visual-line-mode)
 
 (setq web-mode-enable-auto-quoting t)
 
@@ -62,7 +60,9 @@
 (setq org-src-fontify-natively t)
 (setq org-adapt-indentation nil)
 (setq org-list-allow-alphabetical t)
-(setq org-directory "~/Documents/n/")
+(setq org-directory "~/n")
+(setq org-startup-indented t)
+(add-hook 'org-mode-hook 'visual-line-mode)
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
@@ -76,15 +76,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(markdown-header-face-2 ((t (:inherit markdown-header-face :foreground "magenta3" :height 1.0)))))
-      
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes '(misterioso))
- '(org-agenda-files
-   '("~/Documents/n/2022/12_11.org" "~/Documents/n/projects/" "~/Documents/n/areas/" "~/Documents/n/resources/" "~/Documents/n/2022/" "~/Documents/n/2021/"))
  '(org-export-backends '(ascii html md odt org confluence))
  '(org-export-with-toc nil)
  '(org-link-frame-setup
@@ -94,5 +92,5 @@
      (file . find-file)
      (wl . wl-other-frame)))
  '(package-selected-packages '(php-mode web-mode markdown-mode htmlize elpy)))
-      
+
 (tool-bar-mode -1)
